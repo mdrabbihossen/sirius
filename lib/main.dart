@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:sirius/controller/voice_assitant_controller.dart';
+import 'package:sirius/views/home/screens/home_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -7,13 +10,20 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        useMaterial3: true,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => VoiceAssistantController(),
+        ),
+      ],
+      child: MaterialApp(
+        title: 'Sirius',
+        theme: ThemeData(
+          useMaterial3: true,
+        ),
+        home: const HomeScreen(),
       ),
     );
   }
